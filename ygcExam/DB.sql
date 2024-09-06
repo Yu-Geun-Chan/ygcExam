@@ -81,24 +81,40 @@ UPDATE article
 SET boardId = 3
 WHERE id = 4;
 
+CREATE TABLE faq(
+    id INT(10) UNSIGNED NOT NULL PRIMARY KEY AUTO_INCREMENT,
+    `code` CHAR(50) NOT NULL UNIQUE COMMENT 'member(회원)',
+    `name` CHAR(50) NOT NULL UNIQUE COMMENT '질문 카테고리',
+    title CHAR(200) NOT NULL,
+    `body` TEXT NOT NULL
+);
 
-##############################################
-
-
-SELECT * FROM article;
-SHOW COLUMNS FROM article;
-
-
-SELECT * FROM `board`;
-SHOW COLUMNS FROM `board`;
-
-
-INSERT INTO article
-(
-    regDate, updateDate,  boardId, title, `body`
-)
-SELECT NOW(),NOW(), FLOOR(RAND() * 3) + 1, CONCAT('제목_',RAND()), CONCAT('내용_',RAND())
-FROM article;
+## FAQ 테스트데이터 생성
+INSERT INTO faq
+SET title = '1. 회원가입 절차가 어떻게 되나요?',
+`code` = 'member',
+`name` = '회원',
+`body` = '웹사이트나 앱에서 "회원가입" 버튼을 클릭하고, 이메일 주소 또는 휴대폰 번호로 계정을 생성합니다. 이후, 기본 정보(이름, 비밀번호 등)를 입력하고 본인 인증을 완료하면 가입이 완료됩니다.';
 
 
-#####################
+INSERT INTO faq
+SET title = '2. 비밀번호를 잊어버렸어요. 어떻게 해야 하나요?',
+`code` = 'member',
+`name` = '회원',
+`body` = '로그인 페이지에서 "비밀번호 찾기" 버튼을 클릭하고, 등록된 이메일 또는 휴대폰 번호를 입력하면 비밀번호 재설정 링크가 전송됩니다. 이를 통해 새로운 비밀번호를 설정할 수 있습니다.';
+
+INSERT INTO faq
+SET title = '3. 회원정보를 수정하고 싶어요.'
+`body` = '로그인 후, 마이페이지 또는 프로필 관리 페이지에서 이름, 비밀번호, 연락처 등의 정보를 수정할 수 있습니다.';
+
+INSERT INTO faq
+SET title = '4. 회원 탈퇴는 어떻게 하나요?',
+`code` = 'member',
+`name` = '회원',
+`body` = '마이페이지의 "계정 관리" 섹션에서 "회원 탈퇴" 버튼을 클릭하고, 안내에 따라 탈퇴를 완료할 수 있습니다. 탈퇴 시 모든 개인 정보와 활동 기록이 삭제됩니다.';
+
+INSERT INTO faq
+SET title = '5. 탈퇴 후 재가입이 가능한가요?',
+`code` = 'member',
+`name` = '회원',
+`body` = '탈퇴 후 재가입은 가능하지만, 일정 기간 동안 동일한 이메일 주소로는 재가입이 제한될 수 있습니다.';

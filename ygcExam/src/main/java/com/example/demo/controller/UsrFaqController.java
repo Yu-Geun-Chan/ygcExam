@@ -34,15 +34,13 @@ public class UsrFaqController {
 	@Autowired
 	private FaqService faqService;
 
-	@RequestMapping("/usr/article/list")
-	public String showList(HttpServletRequest req, Model model, @RequestParam(defaultValue = "") String searchKeyword)
-			throws IOException {
-
-		Rq rq = (Rq) req.getAttribute("rq");
-
-		int faqsCount = faqService.getQnasCount(searchKeyword);
-
-		List<Faq> faqs = faqService.getForPrintQnas(searchKeyword);
+	@RequestMapping("/usr/faq/list")
+	public String showList(HttpServletRequest req, Model model, @RequestParam(defaultValue = "") String searchKeyword) {
+		
+		String name = searchKeyword;
+		
+		int faqsCount = faqService.getFaqsCount(searchKeyword, name);
+		List<Faq> faqs = faqService.getForPrintFaqs(searchKeyword, name);
 
 		model.addAttribute("faqs", faqs);
 		model.addAttribute("faqsCount", faqsCount);
