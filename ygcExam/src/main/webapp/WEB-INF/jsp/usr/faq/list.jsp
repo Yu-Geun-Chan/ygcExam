@@ -16,6 +16,7 @@
 	<ul>
 		<c:forEach var="faq" items="${faqs}">
 			<li>${faq.title}</li>
+			<li>${faq.body }</li>
 		</c:forEach>
 	</ul>
 </c:if>
